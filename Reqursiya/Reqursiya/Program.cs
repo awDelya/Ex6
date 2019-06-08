@@ -36,6 +36,7 @@ namespace Reqursiya
             }
         }
         private static int a1, a2, a3;
+        private static int[] mas;
         static void Main()
         {
             Color.Print("\n Задайте первое число последовательности а1: ", ConsoleColor.Yellow);
@@ -46,11 +47,36 @@ namespace Reqursiya
             a3 = Number.Check(int.MinValue, int.MaxValue);
             Color.Print("\n Задайте колличество чисел в последовательности N: ", ConsoleColor.Yellow);
             int N = Number.Check(int.MinValue, int.MaxValue);
+            mas = new int[N];
             Color.Print("\n Ваша последовательность выглядит так: ", ConsoleColor.Yellow);
             for(int i = N; i>0; i--)
             {
-                Color.Print(Convert.ToString(FindChislo(i))+" ", ConsoleColor.Cyan);
+                mas[i-1] = FindChislo(i);
             }
+            int m = 0;
+            bool z = false;
+            mas.Reverse();
+            for(int i = 0; i<N; i++)
+            {
+                try
+                {
+                    if (mas[i] == mas[i + 1])
+                    {
+                        z = true;
+                        m++;
+                    }  
+                    if (mas[i] < mas[i + 1])
+                        m++;
+                }
+                catch(IndexOutOfRangeException) { }
+                Color.Print(Convert.ToString(mas[i]) + " ", ConsoleColor.Cyan);
+            }
+            if (m == N - 1 && !z)
+                Color.Print("\n\n Строго возрастающая последовательность.", ConsoleColor.Magenta);
+            else if (m == N - 1 && z)
+                Color.Print("\n\n Последовательность монтонно неубывающая.", ConsoleColor.Magenta);
+            else
+                Color.Print("\n\n Последовательность не является строго возрастающей или монотонно неубывающей.", ConsoleColor.Magenta);
             Text.GoBackMenu();
             Environment.Exit(0);
         }
