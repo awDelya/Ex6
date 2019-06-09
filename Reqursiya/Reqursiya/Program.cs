@@ -9,7 +9,7 @@ namespace Reqursiya
 {
     class Program
     {
-        private static int FindChislo(int N)
+        private static double FindChislo(int N)
         {
             if(N==1)
             {
@@ -25,7 +25,7 @@ namespace Reqursiya
             }
             try
             {
-                return (FindChislo(N - 1) + 1) / ((FindChislo(N - 2) + 2) * FindChislo(N - 3));
+                return (FindChislo(N - 1) + 1) / (FindChislo(N - 2) + 2) * FindChislo(N - 3);
             }
             catch(DivideByZeroException)
             {
@@ -35,19 +35,19 @@ namespace Reqursiya
                 return 1;
             }
         }
-        private static int a1, a2, a3;
-        private static int[] mas;
+        private static double a1, a2, a3;
+        private static double[] mas;
         static void Main()
         {
             Color.Print("\n Задайте первое число последовательности а1: ", ConsoleColor.Yellow);
-            a1 = Number.Check(int.MinValue, int.MaxValue);
+            a1 = Number.Check(double.MinValue, double.MaxValue);
             Color.Print("\n Задайте второе число последовательности а2: ", ConsoleColor.Yellow);
-            a2 = Number.Check(int.MinValue, int.MaxValue);
+            a2 = Number.Check(double.MinValue, double.MaxValue);
             Color.Print("\n Задайте третье число последовательности а3: ", ConsoleColor.Yellow);
-            a3 = Number.Check(int.MinValue, int.MaxValue);
+            a3 = Number.Check(double.MinValue, double.MaxValue);
             Color.Print("\n Задайте колличество чисел в последовательности N: ", ConsoleColor.Yellow);
             int N = Number.Check(int.MinValue, int.MaxValue);
-            mas = new int[N];
+            mas = new double[N];
             Color.Print("\n Ваша последовательность выглядит так: ", ConsoleColor.Yellow);
             for(int i = N; i>0; i--)
             {
