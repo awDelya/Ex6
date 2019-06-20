@@ -53,19 +53,15 @@ namespace Reqursiya
             int m = 0;
             bool z = false;
             mas.Reverse();
-            for (int i = 0; i < N; i++)
+            for (int i = 1; i < N; i++)
             {
-                try
+                if (mas[i - 1] == mas[i])
                 {
-                    if (mas[i] == mas[i + 1])
-                    {
-                        z = true;
-                        m++;
-                    }
-                    if (mas[i] < mas[i + 1])
-                        m++;
+                    z = true;
+                    m++;
                 }
-                catch (IndexOutOfRangeException) { }
+                if (mas[i - 1] < mas[i])
+                    m++;
                 Color.Print(Convert.ToString(mas[i]) + " ", ConsoleColor.Cyan);
             }
             if (m == N - 1 && !z)
